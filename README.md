@@ -1,6 +1,6 @@
 # ts-wc-starter
 
-This is a starter template project for building web components with [TypeScript][] and [lit-element][].
+This is a starter / template project for building web components with [TypeScript][] and [lit-element][].
 
 ## Credits
 
@@ -57,6 +57,13 @@ Use these principles for guidance when writing a web component:
 - The component _should not_ need to make HTTP calls or other API calls. (This may not be possible when wrapping a 3rd party library into a component, though.)
 - Use composition through `<slot>`s.
 
+These are just my highlights from the top of my head. You should really read up these in-depth guides:
+
+- https://developers.google.com/web/fundamentals/web-components/best-practices
+- https://github.com/webcomponents/gold-standard/wiki
+
+...and remember that the web is a fast moving platform. Maybe all this stuff here is already outdated. (I certainly hope it's not outdated at the time of writing, but I have no clue when you are reading this.)
+
 ---
 
 ## Rationale
@@ -101,7 +108,7 @@ A good way to ensure that code changes don't result in sudden changes in appeara
 
 - [puppeteer][]: Provides an API to control Chrome (browser). This allows to programatically load the visual test page for each component in turn.
 - [serve-static][]: Middleware for serving static content via HTTP. This will serve the visual test page to the automated Chrome instance.
-- [pixelmatch][]: Compare to pictures, pixel by pixel.
+- [pixelmatch][]: Compare pictures, pixel by pixel.
 - [pngjs][]: Encode / decode PNG images.
 
 ### The commands to run
