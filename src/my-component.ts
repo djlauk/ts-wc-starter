@@ -1,4 +1,13 @@
-import { LitElement, customElement, property, html, css } from 'lit-element'
+import {
+  LitElement,
+  customElement,
+  property,
+  html,
+  css,
+  CSSResultArray,
+  CSSResult,
+  TemplateResult,
+} from 'lit-element'
 
 export interface MyComponentData {
   key: number
@@ -21,26 +30,26 @@ export class MyComponentElement extends LitElement {
   @property({ type: Number }) key: number = 0
   @property({ type: String }) name: string = 'CaptainCodeman'
 
-  onButtonClick(e: Event) {
+  onButtonClick(): void {
     const evt = new CustomEvent('my-component-click', {
       bubbles: true,
       composed: true,
       detail: {
         key: this.key,
         name: this.name,
-      }
+      },
     })
     this.dispatchEvent(evt)
   }
 
-  render() {
+  render(): TemplateResult {
     return html`
       <p>Hello from ${this.name}</p>
       <button @click=${this.onButtonClick}>Select</button>
     `
   }
 
-  static get styles() {
+  static get styles(): CSSResult | CSSResultArray {
     return css`
       :host {
         display: block;
