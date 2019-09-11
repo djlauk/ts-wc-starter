@@ -1,0 +1,36 @@
+{
+  "name": "ts-wc-starter",
+  "version": "1.0.0",
+  "description": "TypeScript web component starter template",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/visual --timeout=10000",
+    "test:regen": "npm run build && node test/visual/regen.js",
+    "build": "tsc",
+    "build:watch": "tsc -w"
+  },
+  "author": "Daniel J. Lauk <daniel.lauk@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.2.0",
+    "@types/mocha": "^5.2.7",
+    "@types/puppeteer": "^1.19.1",
+    "browser-sync": "^2.26.7",
+    "chai": "^4.2.0",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "express-cache-headers": "^0.1.4",
+    "express-transform-bare-module-specifiers": "^1.0.2",
+    "mocha": "^6.2.0",
+    "pixelmatch": "^5.0.2",
+    "pngjs": "^3.4.0",
+    "puppeteer": "^1.19.0",
+    "serve-static": "^1.14.1",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "lit-element": "^2.2.1",
+    "lit-html": "^1.1.2",
+    "tslib": "^1.10.0"
+  }
+}
