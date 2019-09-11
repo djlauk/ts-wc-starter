@@ -61,6 +61,7 @@ These are just my highlights from the top of my head. You should really read up 
 
 - https://developers.google.com/web/fundamentals/web-components/best-practices
 - https://github.com/webcomponents/gold-standard/wiki
+- https://w3ctag.github.io/webcomponents-design-guidelines/
 
 ...and remember that the web is a fast moving platform. Maybe all this stuff here is already outdated. (I certainly hope it's not outdated at the time of writing, but I have no clue when you are reading this.)
 
@@ -111,6 +112,19 @@ A good way to ensure that code changes don't result in sudden changes in appeara
 - [pixelmatch][]: Compare pictures, pixel by pixel.
 - [pngjs][]: Encode / decode PNG images.
 
+### Supporting tools
+
+These tools make "doing the right thing" (from my personal point of view) a little easier. Others might argue, that this is a pain in the ..., but for me it's automated QA with little extra effort.
+
+- [eslint][]: Static code checks.
+  - [@typescript-eslint/eslint-plugin][tseslint]: Plugin for TypeScript support.
+  - [@typescript-eslint/parser][tseslint]: Parser for TypeScript files.
+- [prettier][]: Code formatting. (Why would anyone ever format source code by hand?!)
+- [jsonlint][]: Checks for JSON files.
+- [husky][]: Integration for git hooks. Prevents commits of ill-formatted unlinted code.
+- [commitlint][]: Lint git commit messages.
+- [lint-staged][]: Run lint commands on staged files in git. Useful together with [husky][].
+
 ### The commands to run
 
 You do not need to run these commands, but this is how all the components got into place. Maybe you'd rather run these commands instead of starting of this starter-project, after all...
@@ -140,21 +154,39 @@ npm install --save-dev \
  serve-static \
  pixelmatch \
  pngjs
+
+npm install --save-dev \
+ eslint \
+ @typescript-eslint/eslint-plugin \
+ @typescript-eslint/parser \
+ prettier \
+ jsonlint \
+ husky \
+ @commitlint/cli \
+ @commitlint/config-conventional \
+ lint-staged
 ```
 
 [browser-sync]: https://www.browsersync.io/
 [chai]: https://www.chaijs.com
+[commitlint]: https://commitlint.js.org/
 [compression]: https://github.com/expressjs/compression
+[eslint]: https://eslint.org/
 [express]: http://expressjs.com/
 [express-cache-headers]: https://github.com/nitsujlangston/express-cache-headers
 [express-transform-bare-module-specifiers]: https://github.com/nodecg/express-transform-bare-module-specifiers#readme
+[husky]: https://github.com/typicode/husky/
+[jsonlint]: http://zaach.github.com/jsonlint/
+[lint-staged]: https://github.com/okonet/lint-staged
 [lit-element]: https://lit-element.polymer-project.org/
 [lit-html]: https://lit-html.polymer-project.org/
 [mocha]: https://mochajs.org
 [nodejs]: https://nodejs.org/en/
 [pixelmatch]: https://github.com/mapbox/pixelmatch
 [pngjs]: https://github.com/lukeapage/pngjs
+[prettier]: https://prettier.io
 [puppeteer]: https://github.com/GoogleChrome/puppeteer
 [serve-static]: https://github.com/expressjs/serve-static
+[tseslint]: https://typescript-eslint.io/
 [tslib]: https://github.com/Microsoft/tslib
 [typescript]: https://www.typescriptlang.org/
