@@ -29,16 +29,17 @@ describe('my-component', function() {
     chai.expect(clicked).to.be.true
   })
 
-  it('should contain current name in event', async function() {
+  it('should contain current name and key in event', async function() {
     el.name = 'Whoever'
+    el.key = 123
     await el.updateComplete
-    let name = ''
+    let detail = ''
     el.addEventListener('my-component-click', (e: CustomEvent<string>) => {
-      name = e.detail
+      detail = e.detail
     })
     const button = el.shadowRoot.querySelector('button')
     button.dispatchEvent(new Event('click'))
-    chai.expect(name).to.equal('Whoever')
+    chai.expect(detail).to.deep.equal({ name: 'Whoever', key: 123 })
   })
 
   it('should render default name', async function() {
