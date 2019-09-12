@@ -76,7 +76,7 @@ The following components are used to create a smooth developer experience. There
 Writing web components is the actual goal we want to accomplish. These packages help in doing that:
 
 - [lit-html][]: The JavaScript templating engine used by [lit-element][], optimized for efficient updates. Part of Google's [Polymer project](https://www.polymer-project.org/).
-- [lit-element][]: A base class for creating web components using [lit-html][]. It's part of Google's [Polymer project](https://www.polymer-project.org/) and the successor of the [Polymer library][https://polymer-library.polymer-project.org/].
+- [lit-element][]: A base class for creating web components using [lit-html][]. It's part of Google's [Polymer project](https://www.polymer-project.org/) and the successor of the [Polymer library](https://polymer-library.polymer-project.org/).
 - [TypeScript][]: A static typed programming language, that is a super set of JavaScript. The static typing helps IDEs provide code suggestions and error detection.
 - [tslib][]: A helper library. When the TypeScript compiler creates its output (i.e. JavaScript code), the code for certain TypeScript language features is taken from [tslib][] instead of being generated multiple times by the compiler. (This will save a few bytes per file processed.)
 
