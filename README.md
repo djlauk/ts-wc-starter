@@ -10,6 +10,16 @@ My work is mainly adding the more or less elaborate explanations in this README 
 
 ## How to use this starter project
 
+As a prerequisite you must install [nodejs][] -- I use the most current LTS version, which was version 10 at the time of writing.
+
+This will install the following tools:
+
+- `node`: The interpreter for JavaScript.
+- `npm`: The node package manager, used for installing dependencies.
+- `npx`: A convenience tool for executing node scripts.
+
+How to exactly use these is beyond the scope of these instructions.
+
 ### Start a new project of this template
 
 1.  Clone the project
@@ -29,6 +39,13 @@ My work is mainly adding the more or less elaborate explanations in this README 
     - In `index.html`:
       - Update the `<title>`
       - Update the `<h1>`
+4.  Install dependencies: `npm install`
+
+### How to start the development server
+
+In one terminal window run the TypeScript compilation: `npm run build:watch`
+
+In another terminal window run the development server: `npm start`
 
 ### How to add another component
 
