@@ -11,7 +11,8 @@
     "lint:eslint": "eslint 'src/**/*.ts'",
     "lint:prettier": "prettier 'src/**/*.ts' --list-different || ( echo '↑↑↑  these files are not well formatted  ↑↑↑' && exit 1 )",
     "format:eslint": "eslint 'src/**/*.ts' --fix",
-    "format:prettier": "prettier 'src/**/*.ts' --write"
+    "format:prettier": "prettier 'src/**/*.ts' --write",
+    "generate:component": "hygen component create"
   },
   "author": "Daniel J. Lauk <daniel.lauk@gmail.com>",
   "license": "ISC",
