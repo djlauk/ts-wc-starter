@@ -10,7 +10,7 @@ My work is mainly adding the more or less elaborate explanations in this README 
 
 ## How to use this starter project
 
-As a prerequisite you must install [nodejs][] -- I use the most current LTS version, which was version 10 at the time of writing.
+As a prerequisite you must install [nodejs][] -- I use the most current LTS version, which was version 12 at the time of writing.
 
 This will install the following tools:
 
@@ -20,7 +20,7 @@ This will install the following tools:
 
 How to exactly use these is beyond the scope of these instructions.
 
-### Start a new project of this template
+### Start a new project off this template
 
 1.  Clone the project
 2.  Delete the `./.git` folder, and create a new repo: `rm -rf ./git && git init`
@@ -30,6 +30,8 @@ How to exactly use these is beyond the scope of these instructions.
       - package description
       - version
       - author
+      - repository
+      - private (if you want to publish the project to an npm registry; I added this to prevent publishing by accident)
       - license (if you need)
     - In `LICENSE.md`:
       - copyright year
@@ -49,9 +51,40 @@ In another terminal window run the development server: `npm start`
 
 ### How to add another component
 
-Say you'd want to implement a `<user-details>` component, here are the steps to do so.
+Say you'd want to implement a `<user-details>` component, what would you need to do?
 
 **ATTENTION:** It's good practice to start from a known, verified "good" point. I.e. make sure all other tests pass, including the screenshot tests!
+
+You can create the starting base for a new component manually or by using the generator. Then you'll have a good starting point to implement your component. Finally, when you're happy with the component, generate a baseline screenshot for future reference (`npm run test:regen`).
+
+**ATTENTION:** This will overwrite all the existing baseline screenshots, too. Make sure you didn't mess anything up, or **be extremely diligent** with what you commit to source control.
+
+#### Use the component generator
+
+After working with this starter for a while, I came across [hygen][], which can automate the tasks. I still left the manual steps in place, if you want to read up on it.
+
+Run the generator and enter 'user-details' for the tag name.
+
+```sh
+npm run generate:component
+
+> ts-wc-starter@1.0.0 generate:component /.../ts-wc-starter
+> hygen component create
+
+✔ Tag name of the component (e.g. my-elem)? · user-details
+
+Loaded templates: _templates
+      inject: src/index.ts
+      inject: src/index.spec.ts
+      inject: test/visual/config.json
+       added: src/user-details.ts
+       added: test/visual/user-details.html
+       added: src/user-details.spec.ts
+```
+
+#### Add a component manually
+
+The steps, which the generator (see above) automates, are:
 
 1.  Create file `src/user-details.ts`. This is where you'll implement the web component.
 2.  Create file `src/user-details.spec.ts`. This is where you'll (unit) test the web component.
@@ -60,11 +93,7 @@ Say you'd want to implement a `<user-details>` component, here are the steps to 
 5.  Add `user-details` to the `elements` array in `test/config.json`. (This file governs the automation of unit and screenshot testing.)
 6.  Create file `test/user-details.html` to demonstrate/test the `<user-details>` component in various states.
 
-Finally, when you're happy with the component, generate a baseline screenshot for future reference (`npm run test:regen`).
-
-**ATTENTION:** This will overwrite all the existing baseline screenshots, too. Make sure you didn't mess anything up, or **be extremely diligent** with what you commit to source control.
-
-#### Hints on authoring a web component
+### Hints on authoring a web component
 
 Use these principles for guidance when writing a web component:
 
@@ -129,6 +158,17 @@ A good way to ensure that code changes don't result in sudden changes in appeara
 - [pixelmatch][]: Compare pictures, pixel by pixel.
 - [pngjs][]: Encode / decode PNG images.
 
+### Deploying to an npm registry
+
+When your code is at a point that you want to share it for others to use, you should deploy it to an npm package registry. The most prominent public registry is [npmjs][], which is also the default for the `npm` command line tool. If you want to publish to a different registry, I suggest to add a `publishConfig` section to your `package.json`.
+
+The commands, that I prepared for publishing are building upon each other, each adding a bit of complexity to it:
+
+- `npm run clean`: A helper script that will clear the "work area" (i.e. the `dist/` directory). **NOTE:** The command I use for recursively deleting the `dist/` directory is **platform specific** to Unix style shells. So, if your on Windows, you need to either change the command or run it in a bash shell.
+- `npm run mypublish:pre`: Runs `clean` (see above) and `build`, and then copies over some files, which `npm` requires to recognize the directory as the root of a package.
+- `npm run mypack`: Runs `mypublish:pre` (see above) and then _packs_ the package. This will generate the package **without uploading to a registry**. This is convenient to check, if your package contents are what you expected.
+- `npm run mypublish`: Runs `mypublish:pre` (see above) and then publishes the package. This will upload the package to the package registry.
+
 ### Supporting tools
 
 These tools make "doing the right thing" (from my personal point of view) a little easier. Others might argue, that this is a pain in the ..., but for me it's automated QA with little extra effort.
@@ -139,6 +179,7 @@ These tools make "doing the right thing" (from my personal point of view) a litt
 - [prettier][]: Code formatting. (Why would anyone ever format source code by hand?!)
 - [jsonlint][]: Checks for JSON files.
 - [husky][]: Integration for git hooks. Prevents commits of ill-formatted unlinted code.
+- [hygen][]: Code generator. Creating files for new components helps maintaining consistency.
 - [commitlint][]: Lint git commit messages.
 - [lint-staged][]: Run lint commands on staged files in git. Useful together with [husky][].
 
@@ -179,6 +220,7 @@ npm install --save-dev \
  prettier \
  jsonlint \
  husky \
+ hygen \
  @commitlint/cli \
  @commitlint/config-conventional \
  lint-staged
@@ -193,12 +235,14 @@ npm install --save-dev \
 [express-cache-headers]: https://github.com/nitsujlangston/express-cache-headers
 [express-transform-bare-module-specifiers]: https://github.com/nodecg/express-transform-bare-module-specifiers#readme
 [husky]: https://github.com/typicode/husky/
+[hygen]: http://hygen.io/
 [jsonlint]: http://zaach.github.com/jsonlint/
 [lint-staged]: https://github.com/okonet/lint-staged
 [lit-element]: https://lit-element.polymer-project.org/
 [lit-html]: https://lit-html.polymer-project.org/
 [mocha]: https://mochajs.org
 [nodejs]: https://nodejs.org/en/
+[npmjs]: https://npmjs.com/
 [pixelmatch]: https://github.com/mapbox/pixelmatch
 [pngjs]: https://github.com/lukeapage/pngjs
 [prettier]: https://prettier.io

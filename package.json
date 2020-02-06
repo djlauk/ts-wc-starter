@@ -3,16 +3,25 @@
   "version": "1.0.0",
   "description": "TypeScript web component starter template",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/djlauk/ts-wc-starter"
+  },
+  "private": true,
   "scripts": {
     "test": "mocha test/visual --timeout=10000",
     "test:regen": "npm run build && node test/visual/regen.js",
     "build": "tsc",
     "build:watch": "tsc -w",
+    "clean": "rm -rf dist/",
     "lint:eslint": "eslint 'src/**/*.ts'",
     "lint:prettier": "prettier 'src/**/*.ts' --list-different || ( echo '↑↑↑  these files are not well formatted  ↑↑↑' && exit 1 )",
     "format:eslint": "eslint 'src/**/*.ts' --fix",
     "format:prettier": "prettier 'src/**/*.ts' --write",
-    "generate:component": "hygen component create"
+    "generate:component": "hygen component create",
+    "mypublish:pre": "npm run clean && npm run build && cp README.md package.json ./dist/",
+    "mypublish": "npm run mypublish:pre && npm publish ./dist",
+    "mypack": "npm run mypublish:pre && npm pack ./dist"
   },
   "author": "Daniel J. Lauk <daniel.lauk@gmail.com>",
   "license": "ISC",
